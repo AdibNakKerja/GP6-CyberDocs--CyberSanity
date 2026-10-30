@@ -28,6 +28,55 @@ def ask_number(question, low, high):
 
 #ni nak mintak logic roles buat
 
+#im mking new function bruh
+
+def calc_power(installed_component):
+  total_power = 0
+  for part in (installed_component):
+    total_power += part[3]
+  return total_power 
+
+def calc_humanity(installed_component, modifier, user_type):
+  humanity_loss = 0
+  if user_type == "Disabled":
+    for part in installed_component:
+      if part[4] == "Medical":
+        humanity_loss += part[2]* 0.5
+      else:
+        humanity_loss += part[2]
+  else:
+    for part in installed_component:
+      humanity_loss += part[2] * modifier
+  humanity = 100- humanity_loss
+  return humanity
+  
+def calc_power_load(capacity, total_power):
+  power_percentage = total_power / capacity * 100
+  if power_percentage >100:
+    power_percentage = 100
+  return power_percentage
+
+def find_clashes(installed_component):
+  seen = []
+  clashes = []
+  for part in installed_component:
+    if not part[1] in seen:
+      seen.append(part[1])
+    else:
+      clashes.append(part[1])
+  return clashes
+
+def calc_penalty(clashes):
+  penalty = len(clashes) * 25
+  if penalty >100:
+    penalty = 100
+  return penalty
+    
+
+
+
+
+
 HIbar= make_bar(50)
 #btw jgn run lagi, sbb ada function yang aku  belum define recommend dll
 #and ni aku hardcode can dia punya value
@@ -142,9 +191,10 @@ def remove_component(installed_component):
 
 
 
-component_list = (["Optical Scanner", "Eyes", 5, 10, "Civilian",1],["Subdermal Armor", "Skin", 10, 20, "Civilian",2],["Load-Lifter Arm", "Arm", 12, 40, "Industrial",3],["Kerenzikov", "Nervous", 15, 30, "Combat",4],["Mantis Blades", "Arm", 18, 35, "Combat",5])
+component_list = (["Optical Scanner", "Eyes", 5, 10, "Civilian",1],["Subdermal Armor", "Skin", 10, 20, "Civilian",2],["Load-Lifter Arm", "Arm", 12, 40, "Industrial",3],["Kerenzikov", "Nervous", 15, 30, "Combat",4],["Mantis Blades", "Arm", 18, 35, "Combat",5], ["Sandvistan","Nervous", 25, 60, "Combat"], ["Neural Link", "Nervous", 20,50,"Combat"], ["Prosthetic Arm", "Arm", 8,25,"Medical"],["Retinal Implant","Eyes",6,12,"Medical"], ["Smart Wrist Display","Arm", 3,5,"Civilian"],["Night Vision Lens","Eyes", 7,15,"Civilian"], ["Heavy Grip Hand", "Arm", 10, 30, "Industrial"])
 installed_component = []
-
+total_power = calc_power(installed_component)
+humanity = calc_humanity(installed_component, modifier, user_type)
 locked = False
 
 show_list()
