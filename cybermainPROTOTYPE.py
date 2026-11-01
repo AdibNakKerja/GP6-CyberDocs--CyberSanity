@@ -8,7 +8,7 @@ def make_bar(value):
 
 
 hjfkldsafewbnscjkhvsdafdasfasd
-
+makng changesfdjskafndasukfhjshsdaG
 #ni nak mintak logic roles buat
 
 #im mking new function bruh
