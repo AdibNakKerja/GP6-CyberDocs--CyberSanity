@@ -7,7 +7,7 @@ def make_bar(value):
 #ni pakai sekali je, and buat function sepatutnya untuk divide task, tapi aku alang ii
 
 
-hjfkldsafewbnscjkhvsda
+hjfkldsafewbnscjkhvsdafdasfasd
 
 #ni nak mintak logic roles buat
 
